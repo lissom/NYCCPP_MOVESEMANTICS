@@ -56,7 +56,7 @@ private:
 
 class Foo : public FooBase {
 private:
-	constexpr static const char* default_fill_ = "Insight";
+	static const char* default_fill_;
 	//counterid exists to the object.
 	static int idcounter;
 	//const int also means there are no implicit move operations.
@@ -161,6 +161,7 @@ public:
 	}
 };
 int Foo::idcounter = 0;
+const char* Foo::default_fill_ = "Insight";
 
 Foo FooFactory(const int whatfoo) {
 	//With move we can return by value cheaply even if elision copy isn't possible
